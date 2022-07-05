@@ -1,0 +1,31 @@
+import boto3
+import json
+import datetime
+
+sts = boto3.client('sts')
+s3 = boto3.client('s3')
+bucketName = 'mwa-proposals' # CHANGE TO YOUR S3 BUCKET
+
+def lambda_handler(event, context):
+    params = event["queryStringParameters"]
+    
+    try:
+        s3Key = params["name"] + '/' + params["title"]
+    except:
+        return {'statusCode':501, 'body':f'Cant get name parameter:'}
+        
+    contentType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+
+    try:
+        response = s3.generate_presigned_url('put_object',
+                                             Params={'Bucket':bucketName, 
+                                                     'Key':s3Key,
+                                                     'ContentType':contentType},
+                                             ExpiresIn=3600)
+    except Exception as e:
+        return {'statusCode':500, 'body':f'Signing S3 error: {e}'}
+    
+    return {'statusCode':200, 'body':{
+        'url': response,
+        'path': s3Key
+    }}

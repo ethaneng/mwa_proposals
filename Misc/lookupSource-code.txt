@@ -1,0 +1,32 @@
+import json
+import astropy
+from astropy.coordinates import SkyCoord
+
+def lambda_handler(event, context):
+    # TODO implement
+    
+    
+    try:
+        name = event['queryStringParameters']['name']
+        p = SkyCoord.from_name(name)
+        
+        code = 200
+        
+        body = {
+            'ra': str(p.ra),
+            'dec': str(p.dec)
+        }
+    except:
+        code = 501
+        
+        body = {
+            'ra': 'Couldn\'t lookup',
+            'dec': 'Couldn\'t lookup',
+        }
+        
+    
+    
+    return {
+        'statusCode': code,
+        'body': body
+    }

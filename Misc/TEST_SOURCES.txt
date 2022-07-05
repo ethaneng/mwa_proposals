@@ -1,0 +1,5 @@
+CUSTOM, ABC, RA/DEC, 243d16m22.9009s, 16d07m31.4451s, look at this test comment
+3c333, wow this is another comment
+NGC 1207
+CUSTOM, DEF, AZ/EL, c1, c2, such a detailed long long comment this time
+CUSTOM, GHI, GLON/GLAT, c3, c4
