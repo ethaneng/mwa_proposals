@@ -8,7 +8,9 @@ function Home(props) {
   return (
     <div style={{display: 'flex', justifyContent: 'center', paddingTop: '50px'}}>
       <Paper elevation={3} sx={{width: '1600px', height: '700px', padding: '25px'}}>
-        <h2>My Proposals</h2>
+        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          <h2>My Proposals</h2>
+        </div>
         <Grid container spacing={2} sx={{marginTop: '25px'}}>
           <Grid item xs={4}>
             <NewProposal defaultValues={props.defaultValues} setFormValues={props.setFormValues} setPage={props.setPage} />
