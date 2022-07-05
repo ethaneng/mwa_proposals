@@ -52,7 +52,7 @@ function LoggedInContent(props) {
   return (
     <div>
       <Header loggedIn={props.loggedIn} handleLogInClick={props.handleLogInClick} handleLogOutClick={props.handleLogOutClick} setPage={setPage}/>
-      {page === 'home' ? <Home proposals={userProposals} defaultValues={defaultValues} setPage={setPage} setFormValues={setFormValues} userProposals={userProposals} userId={props.userId} setUser={props.setUser}/> : ''}
+      {page === 'home' ? <Home proposals={userProposals} defaultValues={defaultValues} setPage={setPage} setFormValues={setFormValues} userProposals={userProposals} setUserProposals={setUserProposals} userId={props.userId} setUser={props.setUser}/> : ''}
       {page === 'edit' ? <Proposal formValues={formValues} setFormValues={setFormValues}/> : ''}
     </div>
   )

@@ -6,6 +6,8 @@ const app = express()
 const pool = require('./database/db')
 const path = require('path')
 
+require('dotenv').config()
+
 const PORT = 5000
 
 app.use(cors())
@@ -59,10 +61,10 @@ app.post('/submit_proposal', async (req, res) => {
             u_id} = req.body
 
             
-            // send to postgres
-            const newProposal = await pool.query(`INSERT INTO proposal (proposaltitle, contactemail, proposalmembers, areasofscience, requestedtimecategory, totaltimerequested, islargeproposal, sharedtimerequested, commensalproposals, arrayconfig, requestedfrequencies, observingmodesrequested, iscontinuation, proposalinterruptibility, proposalabstract, descriptionfilelocation, calibratorfields, sources, frequencysets, u_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20)`, [proposaltitle, contactemail, proposalmembers, areasofscience, requestedtimecategory, totaltimerequested, islargeproposal, sharedtimerequested, commensalproposals, arrayconfig, requestedfrequencies, observingmodesrequested, iscontinuation, proposalinterruptibility, proposalabstract, descriptionfile, calibratorfields, sources, frequencysets, u_id])
-            res.json(newProposal)
-            console.log('inserted proposal into db')
+        // send to postgres
+        const newProposal = await pool.query(`INSERT INTO proposal (proposaltitle, contactemail, proposalmembers, areasofscience, requestedtimecategory, totaltimerequested, islargeproposal, sharedtimerequested, commensalproposals, arrayconfig, requestedfrequencies, observingmodesrequested, iscontinuation, proposalinterruptibility, proposalabstract, descriptionfilelocation, calibratorfields, sources, frequencysets, u_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20)`, [proposaltitle, contactemail, proposalmembers, areasofscience, requestedtimecategory, totaltimerequested, islargeproposal, sharedtimerequested, commensalproposals, arrayconfig, requestedfrequencies, observingmodesrequested, iscontinuation, proposalinterruptibility, proposalabstract, descriptionfile, calibratorfields, sources, frequencysets, u_id])
+        res.json(newProposal)
+        console.log('inserted proposal into db')
     } catch (error) {
         res.send(error)
     }

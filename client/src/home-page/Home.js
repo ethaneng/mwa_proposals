@@ -1,15 +1,29 @@
-import { Paper, Grid } from '@mui/material'
+import { Paper, Grid, IconButton } from '@mui/material'
 import React from 'react'
 import ProposalCard from './ProposalCard'
 import NewProposal from './NewProposal'
+import { Refresh } from '@mui/icons-material'
 
 function Home(props) {
-  // props: proposals Array[obj] where each obj is the json object for a proposal
+  
+  async function refreshProposals() {
+    // get proposals for logged in user
+    const response = await fetch(`http://localhost:5000/get_proposals?user=${props.userId}`)
+    if (!response.ok) {
+      throw new Error('Couldnt gather proposals from database for logged in user')
+    }
+    const data = await response.json()
+    props.setUserProposals(data)
+  }
+
   return (
     <div style={{display: 'flex', justifyContent: 'center', paddingTop: '50px'}}>
       <Paper elevation={3} sx={{width: '1600px', height: '700px', padding: '25px'}}>
         <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
           <h2>My Proposals</h2>
+          <IconButton onClick={refreshProposals} >
+            <Refresh />
+          </IconButton>
         </div>
         <Grid container spacing={2} sx={{marginTop: '25px'}}>
           <Grid item xs={4}>
