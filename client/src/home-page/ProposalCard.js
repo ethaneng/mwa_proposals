@@ -26,14 +26,16 @@ function ProposalCard(props) {
   return (
     <div>
         <Paper elevation={4} sx={{padding: '15px', height: '150px'}}>
-            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'start'}}>
                 <h2>{props.data.proposaltitle}</h2>
-                <div>
+                <div style={{display: 'flex'}}>
                     <IconButton onClick={()=> deleteProposal(props.data.p_id)}><Delete sx={{color: '#cd0c0c'}}/></IconButton>
                     <IconButton onClick={() => editProposal(props.data)}><Edit sx={{color: '#1976d2'}}/></IconButton>
                 </div>
             </div>
-            <p style={{overflowY: 'hidden', height: '35px'}}>{props.data.proposalabstract ? props.data.proposalabstract : 'No abstract specified'}</p>
+            <div style={{overflowY: 'hidden', marginTop: '15px', height: '50px'}}>
+                <p>{props.data.proposalabstract ? props.data.proposalabstract : 'No abstract specified'}</p>
+            </div>
         </Paper>
     </div>
   )
