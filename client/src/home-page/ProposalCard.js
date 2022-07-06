@@ -33,7 +33,7 @@ function ProposalCard(props) {
                     <IconButton onClick={() => editProposal(props.data)}><Edit sx={{color: '#1976d2'}}/></IconButton>
                 </div>
             </div>
-            <p style={{overflowY: 'hidden', height: '35px'}}>{props.data.proposalabstract}</p>
+            <p style={{overflowY: 'hidden', height: '35px'}}>{props.data.proposalabstract ? props.data.proposalabstract : 'No abstract specified'}</p>
         </Paper>
     </div>
   )
