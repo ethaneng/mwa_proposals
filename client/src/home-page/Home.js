@@ -30,7 +30,7 @@ function Home(props) {
             <NewProposal defaultValues={props.defaultValues} setFormValues={props.setFormValues} setPage={props.setPage} />
           </Grid>
           {props.proposals.map((proposal, index) => {
-            return <Grid item xs={4}> <ProposalCard data={proposal} key={proposal.p_id} setFormValues={props.setFormValues} setPage={props.setPage} userId={props.userId} setUser={props.setUser} /> </Grid>
+            return <Grid item xs={4}> <ProposalCard data={proposal} key={proposal.p_id} refreshProposals={refreshProposals} setFormValues={props.setFormValues} setPage={props.setPage} userId={props.userId} setUser={props.setUser} /> </Grid>
           })}
         </Grid>
       </Paper>

@@ -17,7 +17,7 @@ function ProposalCard(props) {
             console.log(response)
 
             // update state to not show deleted proposal anymore
-            
+            props.refreshProposals()
         } catch (error) {
             console.log(error)
         }
